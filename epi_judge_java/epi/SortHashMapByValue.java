@@ -38,8 +38,12 @@ public class SortHashMapByValue {
      * 
      * @param map The Map to be sorted (accepts any Map implementation)
      * @return A LinkedHashMap sorted by values in ascending order
+     * @throws NullPointerException if map is null
      */
     public static Map<String, Integer> sortByValueAscending(Map<String, Integer> map) {
+        if (map == null) {
+            throw new NullPointerException("Input map cannot be null");
+        }
         return map.entrySet()
                   .stream()
                   .sorted(Map.Entry.comparingByValue())
@@ -65,8 +69,12 @@ public class SortHashMapByValue {
      * 
      * @param map The Map to be sorted (accepts any Map implementation)
      * @return A LinkedHashMap sorted by values in descending order
+     * @throws NullPointerException if map is null
      */
     public static Map<String, Integer> sortByValueDescending(Map<String, Integer> map) {
+        if (map == null) {
+            throw new NullPointerException("Input map cannot be null");
+        }
         return map.entrySet()
                   .stream()
                   .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -86,8 +94,12 @@ public class SortHashMapByValue {
      * 
      * @param map The Map to be sorted (accepts any Map implementation)
      * @return An immutable List of Map.Entry sorted by values in ascending order
+     * @throws NullPointerException if map is null
      */
     public static List<Map.Entry<String, Integer>> sortByValueAsList(Map<String, Integer> map) {
+        if (map == null) {
+            throw new NullPointerException("Input map cannot be null");
+        }
         return map.entrySet()
                   .stream()
                   .sorted(Map.Entry.comparingByValue())
