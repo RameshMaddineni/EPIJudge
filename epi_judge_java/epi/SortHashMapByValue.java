@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 public class SortHashMapByValue {
     
     /**
-     * Sorts a HashMap by its values in ascending order using Java Streams.
+     * Sorts a Map by its values in ascending order using Java Streams.
      * 
      * Detailed Explanation:
      * ---------------------
-     * 1. hm.entrySet().stream() - Converts the HashMap's entry set to a Stream.
+     * 1. map.entrySet().stream() - Converts the Map's entry set to a Stream.
      *    Each entry contains a key-value pair.
      * 
      * 2. sorted(Map.Entry.comparingByValue()) - Sorts the stream entries by their values.
@@ -36,10 +36,10 @@ public class SortHashMapByValue {
      * sorted entries, the resulting map will maintain the sorted order.
      * Regular HashMap doesn't guarantee any order.
      * 
-     * @param map The HashMap to be sorted
+     * @param map The Map to be sorted (accepts any Map implementation)
      * @return A LinkedHashMap sorted by values in ascending order
      */
-    public static Map<String, Integer> sortByValueAscending(HashMap<String, Integer> map) {
+    public static Map<String, Integer> sortByValueAscending(Map<String, Integer> map) {
         return map.entrySet()
                   .stream()
                   .sorted(Map.Entry.comparingByValue())
@@ -52,7 +52,7 @@ public class SortHashMapByValue {
     }
     
     /**
-     * Sorts a HashMap by its values in descending order using Java Streams.
+     * Sorts a Map by its values in descending order using Java Streams.
      * 
      * Additional Explanation:
      * -----------------------
@@ -63,10 +63,10 @@ public class SortHashMapByValue {
      * Alternatively, you could use:
      * - sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
      * 
-     * @param map The HashMap to be sorted
+     * @param map The Map to be sorted (accepts any Map implementation)
      * @return A LinkedHashMap sorted by values in descending order
      */
-    public static Map<String, Integer> sortByValueDescending(HashMap<String, Integer> map) {
+    public static Map<String, Integer> sortByValueDescending(Map<String, Integer> map) {
         return map.entrySet()
                   .stream()
                   .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -79,19 +79,19 @@ public class SortHashMapByValue {
     }
     
     /**
-     * Sorts a HashMap by its values and returns a list of entries.
+     * Sorts a Map by its values and returns an immutable list of entries.
      * 
      * This alternative approach is useful when you just need to iterate
      * over sorted entries without creating a new Map.
      * 
-     * @param map The HashMap to be sorted
-     * @return A List of Map.Entry sorted by values in ascending order
+     * @param map The Map to be sorted (accepts any Map implementation)
+     * @return An immutable List of Map.Entry sorted by values in ascending order
      */
-    public static List<Map.Entry<String, Integer>> sortByValueAsList(HashMap<String, Integer> map) {
+    public static List<Map.Entry<String, Integer>> sortByValueAsList(Map<String, Integer> map) {
         return map.entrySet()
                   .stream()
                   .sorted(Map.Entry.comparingByValue())
-                  .collect(Collectors.toList());
+                  .collect(Collectors.toUnmodifiableList());
     }
     
     /**
@@ -99,7 +99,7 @@ public class SortHashMapByValue {
      */
     public static void main(String[] args) {
         // Create and populate the HashMap as specified in the problem
-        HashMap<String, Integer> hm = new HashMap<String, Integer>();
+        HashMap<String, Integer> hm = new HashMap<>();
         hm.put("Math", 98);
         hm.put("Data Structure", 85);
         hm.put("Database", 91);
