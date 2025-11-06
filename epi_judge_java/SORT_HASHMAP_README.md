@@ -1,5 +1,9 @@
 # Sort HashMap by Value Using Java Streams
 
+> **Note:** This is a supplementary example demonstrating HashMap sorting techniques using Java Streams.
+> It is not part of the standard EPI (Elements of Programming Interviews) problem set, but serves
+> as an educational resource for learning modern Java collection manipulation.
+
 This solution demonstrates how to sort a `HashMap<String, Integer>` by its values using Java Streams API.
 
 ## Problem Statement
@@ -79,12 +83,13 @@ The standard `HashMap` does NOT guarantee any specific order. When we sort and c
 
 ### Compile:
 ```bash
-cd /home/runner/work/EPIJudge/EPIJudge/epi_judge_java
+cd epi_judge_java
 javac -d java_build epi/SortHashMapByValue.java
 ```
 
 ### Run:
 ```bash
+cd epi_judge_java
 java -cp java_build epi.SortHashMapByValue
 ```
 
