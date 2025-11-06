@@ -32,7 +32,7 @@ public class SortedListToBst {
     // Previous function call sets head to the successor of the maximum node in
     // the tree rooted at left.
     DoublyListNode<Integer> curr = head;
-    head.prev = left;
+    curr.prev = left;
     head = head.next;
     curr.next = buildSortedListHelper(mid + 1, end);
     return curr;
