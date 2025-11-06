@@ -19,7 +19,7 @@ Sort the HashMap by its values (the scores) in both ascending and descending ord
 The solution leverages Java 8+ Streams API to provide a clean, functional approach to sorting. The main method used is:
 
 ```java
-public static Map<String, Integer> sortByValueAscending(HashMap<String, Integer> map) {
+public static Map<String, Integer> sortByValueAscending(Map<String, Integer> map) {
     return map.entrySet()
               .stream()
               .sorted(Map.Entry.comparingByValue())
@@ -31,6 +31,8 @@ public static Map<String, Integer> sortByValueAscending(HashMap<String, Integer>
               ));
 }
 ```
+
+Note: The method accepts `Map<String, Integer>` rather than `HashMap<String, Integer>` to provide flexibility - it can work with any Map implementation (HashMap, TreeMap, LinkedHashMap, etc.).
 
 ## Detailed Explanation
 
@@ -135,7 +137,7 @@ Operating System : 79
 For comparison, here's the traditional approach:
 
 ```java
-public static Map<String, Integer> sortByValueTraditional(HashMap<String, Integer> map) {
+public static Map<String, Integer> sortByValueTraditional(Map<String, Integer> map) {
     List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
     
     Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
