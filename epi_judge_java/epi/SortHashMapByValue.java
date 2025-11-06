@@ -4,11 +4,15 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Demonstrates how to sort a HashMap by its values using Java Streams.
+ * Demonstrates how to sort a HashMap by its values or keys using Java Streams.
  * 
- * This program shows multiple approaches to sort a HashMap<String, Integer> by values,
- * with a focus on using Java 8+ Streams API which provides a functional and declarative
- * approach to data processing.
+ * This program shows multiple approaches to sort a HashMap<String, Integer> by either
+ * values or keys, with a focus on using Java 8+ Streams API which provides a functional
+ * and declarative approach to data processing.
+ * 
+ * Available sorting methods:
+ * - By Value: sortByValueAscending, sortByValueDescending, sortByValueAsList
+ * - By Key: sortByKeyAscending, sortByKeyDescending, sortByKeyAsList
  */
 public class SortHashMapByValue {
     
@@ -257,7 +261,7 @@ public class SortHashMapByValue {
         
         System.out.println("\nStep-by-Step Breakdown:");
         System.out.println("1. map.entrySet().stream() -> Create a stream from map entries");
-        System.out.println("2. sorted(Map.Entry.comparingByValue/Key()) -> Sort by values or keys");
+        System.out.println("2. sorted(Map.Entry.comparingByValue() or comparingByKey()) -> Sort by values or keys");
         System.out.println("3. collect(Collectors.toMap(...)) -> Collect back to a Map");
         System.out.println("4. LinkedHashMap::new -> Preserve sorted order");
         
