@@ -7,13 +7,35 @@ import epi.test_framework.TimedExecutor;
 import java.util.Iterator;
 import java.util.List;
 public class SortedListToBst {
+  
+  private static DoublyListNode<Integer> head;
+  
   // Returns the root of the corresponding BST. The prev and next fields of the
   // list nodes are used as the BST nodes left and right fields, respectively.
   // The length of the list is given.
   public static DoublyListNode<Integer>
   buildBSTFromSortedList(DoublyListNode<Integer> l, int length) {
-    // TODO - you fill in here.
-    return null;
+    head = l;
+    return buildSortedListHelper(0, length);
+  }
+  
+  // Builds a BST from the (start + 1)-th to the end-th node, inclusive, in l,
+  // and returns the root.
+  private static DoublyListNode<Integer> buildSortedListHelper(int start,
+                                                               int end) {
+    if (start >= end) {
+      return null;
+    }
+    
+    int mid = start + ((end - start) / 2);
+    DoublyListNode<Integer> left = buildSortedListHelper(start, mid);
+    // Previous function call sets head to the successor of the maximum node in
+    // the tree rooted at left.
+    DoublyListNode<Integer> curr = head;
+    head.prev = left;
+    head = head.next;
+    curr.next = buildSortedListHelper(mid + 1, end);
+    return curr;
   }
   public static void compareVectorAndTree(DoublyListNode<Integer> tree,
                                           Iterator<Integer> it)

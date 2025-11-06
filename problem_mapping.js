@@ -2828,7 +2828,7 @@ problem_mapping = {
                 "total": 100
             },
             "Java: SortedListToBst.java": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             },
             "Python: sorted_list_to_bst.py": {
@@ -2842,7 +2842,7 @@ problem_mapping = {
                 "total": 950
             },
             "Java: BstToSortedList.java": {
-                "passed": 0,
+                "passed": 950,
                 "total": 950
             },
             "Python: bst_to_sorted_list.py": {
