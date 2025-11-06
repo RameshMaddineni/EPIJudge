@@ -107,6 +107,95 @@ public class SortHashMapByValue {
     }
     
     /**
+     * Sorts a Map by its keys in ascending order using Java Streams.
+     * 
+     * Detailed Explanation:
+     * ---------------------
+     * This method sorts the Map entries by their keys (String) in alphabetical order.
+     * 
+     * 1. map.entrySet().stream() - Converts the Map's entry set to a Stream.
+     * 
+     * 2. sorted(Map.Entry.comparingByKey()) - Sorts the stream entries by their keys.
+     *    - Map.Entry.comparingByKey() creates a Comparator that compares entries based on keys
+     *    - For String keys, this sorts alphabetically (A-Z) by default
+     * 
+     * 3. collect(Collectors.toMap(...)) - Collects the sorted entries back into a Map.
+     *    - LinkedHashMap::new - Uses LinkedHashMap to preserve the sorted order
+     * 
+     * Note: TreeMap could also be used here since it maintains keys in sorted order,
+     * but LinkedHashMap is used for consistency with the value-sorting methods.
+     * 
+     * @param map The Map to be sorted (accepts any Map implementation)
+     * @return A LinkedHashMap sorted by keys in ascending (alphabetical) order
+     * @throws NullPointerException if map is null
+     */
+    public static Map<String, Integer> sortByKeyAscending(Map<String, Integer> map) {
+        if (map == null) {
+            throw new NullPointerException("Input map cannot be null");
+        }
+        return map.entrySet()
+                  .stream()
+                  .sorted(Map.Entry.comparingByKey())
+                  .collect(Collectors.toMap(
+                      Map.Entry::getKey,
+                      Map.Entry::getValue,
+                      (e1, e2) -> e1,
+                      LinkedHashMap::new
+                  ));
+    }
+    
+    /**
+     * Sorts a Map by its keys in descending order using Java Streams.
+     * 
+     * Additional Explanation:
+     * -----------------------
+     * This method is similar to sortByKeyAscending, but uses:
+     * - Map.Entry.comparingByKey(Comparator.reverseOrder())
+     *   This creates a comparator that sorts keys in reverse alphabetical order (Z-A).
+     * 
+     * Alternatively, you could use:
+     * - sorted(Map.Entry.<String, Integer>comparingByKey().reversed())
+     * 
+     * @param map The Map to be sorted (accepts any Map implementation)
+     * @return A LinkedHashMap sorted by keys in descending (reverse alphabetical) order
+     * @throws NullPointerException if map is null
+     */
+    public static Map<String, Integer> sortByKeyDescending(Map<String, Integer> map) {
+        if (map == null) {
+            throw new NullPointerException("Input map cannot be null");
+        }
+        return map.entrySet()
+                  .stream()
+                  .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
+                  .collect(Collectors.toMap(
+                      Map.Entry::getKey,
+                      Map.Entry::getValue,
+                      (e1, e2) -> e1,
+                      LinkedHashMap::new
+                  ));
+    }
+    
+    /**
+     * Sorts a Map by its keys and returns an immutable list of entries.
+     * 
+     * This alternative approach is useful when you just need to iterate
+     * over sorted entries by key without creating a new Map.
+     * 
+     * @param map The Map to be sorted (accepts any Map implementation)
+     * @return An immutable List of Map.Entry sorted by keys in ascending order
+     * @throws NullPointerException if map is null
+     */
+    public static List<Map.Entry<String, Integer>> sortByKeyAsList(Map<String, Integer> map) {
+        if (map == null) {
+            throw new NullPointerException("Input map cannot be null");
+        }
+        return map.entrySet()
+                  .stream()
+                  .sorted(Map.Entry.comparingByKey())
+                  .collect(Collectors.toUnmodifiableList());
+    }
+    
+    /**
      * Main method demonstrating the HashMap sorting functionality.
      */
     public static void main(String[] args) {
@@ -132,9 +221,21 @@ public class SortHashMapByValue {
         Map<String, Integer> sortedDesc = sortByValueDescending(hm);
         sortedDesc.forEach((key, value) -> System.out.println(key + " : " + value));
         
-        System.out.println("\n===== Sorted as List of Entries =====");
+        System.out.println("\n===== Sorted by Key (Ascending - Alphabetical) =====");
+        Map<String, Integer> sortedByKeyAsc = sortByKeyAscending(hm);
+        sortedByKeyAsc.forEach((key, value) -> System.out.println(key + " : " + value));
+        
+        System.out.println("\n===== Sorted by Key (Descending - Reverse Alphabetical) =====");
+        Map<String, Integer> sortedByKeyDesc = sortByKeyDescending(hm);
+        sortedByKeyDesc.forEach((key, value) -> System.out.println(key + " : " + value));
+        
+        System.out.println("\n===== Sorted as List of Entries (by Value) =====");
         List<Map.Entry<String, Integer>> sortedList = sortByValueAsList(hm);
         sortedList.forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
+        
+        System.out.println("\n===== Sorted as List of Entries (by Key) =====");
+        List<Map.Entry<String, Integer>> sortedByKeyList = sortByKeyAsList(hm);
+        sortedByKeyList.forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
         
         System.out.println("\n===== DETAILED SOLUTION EXPLANATION =====");
         System.out.println("\nKey Concepts Used:");
@@ -149,9 +250,14 @@ public class SortHashMapByValue {
         System.out.println("- Supports parallel processing (if needed)");
         System.out.println("- Easier to maintain and test");
         
+        System.out.println("\nSorting Options:");
+        System.out.println("- By Value: Use Map.Entry.comparingByValue()");
+        System.out.println("- By Key: Use Map.Entry.comparingByKey()");
+        System.out.println("- For descending: Add Comparator.reverseOrder()");
+        
         System.out.println("\nStep-by-Step Breakdown:");
         System.out.println("1. map.entrySet().stream() -> Create a stream from map entries");
-        System.out.println("2. sorted(Map.Entry.comparingByValue()) -> Sort by values");
+        System.out.println("2. sorted(Map.Entry.comparingByValue/Key()) -> Sort by values or keys");
         System.out.println("3. collect(Collectors.toMap(...)) -> Collect back to a Map");
         System.out.println("4. LinkedHashMap::new -> Preserve sorted order");
         
