@@ -98,8 +98,9 @@ public class SortHashMapByValue {
      * Main method demonstrating the HashMap sorting functionality.
      */
     public static void main(String[] args) {
-        // Create and populate the HashMap as specified in the problem
-        HashMap<String, Integer> hm = new HashMap<>();
+        // Create and populate the Map as specified in the problem
+        // Using Map interface with HashMap implementation (best practice)
+        Map<String, Integer> hm = new HashMap<>();
         hm.put("Math", 98);
         hm.put("Data Structure", 85);
         hm.put("Database", 91);
