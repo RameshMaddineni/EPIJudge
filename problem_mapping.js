@@ -65,7 +65,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10000
             },
-            "Python: closest_int_same_weight.py": { 
+            "Python: closest_int_same_weight.py": {
                 "passed": 0,
                 "total": 10000
             }
@@ -2824,29 +2824,29 @@ problem_mapping = {
         },
         "24.19 Convert a sorted doubly linked list into a BST": {
             "C++: sorted_list_to_bst.cc": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             },
             "Java: SortedListToBst.java": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             },
             "Python: sorted_list_to_bst.py": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             }
         },
         "24.20 Convert a BST to a sorted doubly linked list": {
             "C++: bst_to_sorted_list.cc": {
-                "passed": 0,
+                "passed": 950,
                 "total": 950
             },
             "Java: BstToSortedList.java": {
-                "passed": 0,
+                "passed": 950,
                 "total": 950
             },
             "Python: bst_to_sorted_list.py": {
-                "passed": 0,
+                "passed": 950,
                 "total": 950
             }
         },
